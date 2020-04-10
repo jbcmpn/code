@@ -1,21 +1,4 @@
 fn meeting(s: &str) -> String {
-    let mut names = s
-        .split(';')
-        .map(|person| {
-            let split = &person
-                .to_uppercase()
-                .split(':')
-                .map(|i| i.to_string())
-                .collect::<Vec<String>>();
-            format!("({}, {})", split[1], split[0])
-        })
-        .collect::<Vec<String>>()
-    ;
-    names.sort();
-    names.join("")
-}
-
-fn meeting(s: &str) -> String {
     let mut names = s.to_uppercase()
         .split(';')
         .map(|p| {
@@ -29,15 +12,11 @@ fn meeting(s: &str) -> String {
     names.sort();
     names.join("")
 }
-
 extern crate rand;
-
 use self::rand::Rng;
-
 //
 // basic tests
 //
-
 fn dotest(s: &str, exp: &str) -> () {
         println!("s:{}", s);
         let ans = meeting(s);
@@ -47,7 +26,6 @@ fn dotest(s: &str, exp: &str) -> () {
         assert_eq!(ans, exp);
         println!("{}", "-");
 }
-
 #[test]
 fn basic_tests() {
     dotest("Alexis:Wahl;John:Bell;Victoria:Schwarz;Abba:Dorny;Grace:Meta;Ann:Arno;Madison:STAN;Alex:Cornwell;Lewis:Kern;Megan:Stan;Alex:Korn",
@@ -71,11 +49,9 @@ fn basic_tests() {
     dotest("Megan:Wahl;Alexis:Arno;Alex:Wahl;Grace:STAN;Amber:Kern;Amandy:Schwarz;Alissa:Stan;Paul:Kern;Ann:Meta;Lewis:Burroughs;Andrew:Bell",
         "(ARNO, ALEXIS)(BELL, ANDREW)(BURROUGHS, LEWIS)(KERN, AMBER)(KERN, PAUL)(META, ANN)(SCHWARZ, AMANDY)(STAN, ALISSA)(STAN, GRACE)(WAHL, ALEX)(WAHL, MEGAN)");
 }
-
 //
 // random tests
 //
-
 static FNAMES: &'static [&'static str] = &[
     "Emily", "Sophia", "Anna", "Anna", "Sarah", "Michael", "Jacob", "Alex", "Alex", "Alex", "Antony", "John", "Matthew", "Andrew", "Paul", "Paul", "Ann", "Ann", "Ann", "Ann", "Robert", 
     "Megan", "Alissa", "Alexis", "Grace", "Madison", "Elizabeth", "James", "Amandy", "Abba", "Victoria", "Amber", "Sydney", "Haley", "Lewis"
@@ -84,7 +60,6 @@ static LNAMES: &'static [&'static str] = &[
     "Korn", "Arno", "Arno", "Bell", "Bell", "Kern", "Kern", "Kern", "Russel", "Meta", "Meta", "Meta", "Cornwell", "Cornwell", "Wahl", "Wahl", "Wahl", "Wahl", "Dorny", "Dorries", 
        "Stan", "STAN", "STAN", "Thorensen", "Schwarz", "Schwarz", "Gates", "Steve", "Tolkien", "Burroughs", "Gates", "Bell", "Korn", "Russell", "Rudd"
 ];
-
 fn meeting39(s: &str) -> String {
     let mut names = s
         .split(';')
@@ -101,7 +76,6 @@ fn meeting39(s: &str) -> String {
     names.sort();
     names.join("")
 }
-
 fn compose39(k: usize) -> String {
     let mut rng = rand::thread_rng();
     let mut items = vec![];
@@ -112,7 +86,6 @@ fn compose39(k: usize) -> String {
     }
     items.join(";")
 }
-
 #[test]
 fn random_tests() {
     let mut rng = rand::thread_rng();
@@ -124,9 +97,3 @@ fn random_tests() {
     }
 }
 
-fn main() {
-    //let a = "Alexis:Wahl;John:Bell;Victoria:Schwarz;Abba:Dorny;Grace:Meta;Ann:Arno;Madison:STAN;Alex:Cornwell;Lewis:Kern;Megan:Stan;Alex:Korn";
-    //println!("{}", meeting(a));
-    //basic_tests();
-    random_tests();
-}
