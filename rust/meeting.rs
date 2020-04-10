@@ -1,4 +1,4 @@
-//https://www.codewars.com/kata/59df2f8f08c6cec835000012/rust
+//https://www.codewars.com/kata/59df2f8f08c6cec835000012/
 
 /*John has invited some friends. His list is:
 
